@@ -61,10 +61,10 @@ function draw() {
   bomber.display();
   fighter.display();
   if (playIt) {
- 	if (keyIsDown(LEFT_ARROW)) {
+ 	if (keyIsDown(78)) {
     	bomber.angle += -0.03;
 	}
-  	if (keyIsDown(RIGHT_ARROW)) {
+  	if (keyIsDown(77)) {
     	bomber.angle += +0.03;
   	}
   	bomber.speed = bSpeedSlider.value() / 100;
@@ -244,11 +244,12 @@ function calcTizzyAngle(x, y, bomber) {
 	var dx = x - bomber.x;
 	var connectionAngle = atan2(dy, dx);
 	if (connectionAngle < 0) {
+    console.log("Changed from: " + degrees(connectionAngle));
 		connectionAngle += 2 *PI;
 	}
-    console.log(degrees(bomber.angle));
-    console.log(degrees(connectionAngle));
-    console.log(degrees(bomber.angle - connectionAngle));
+    console.log("bomber " + degrees(bomber.angle));
+    console.log("connectionAngle " + degrees(connectionAngle));
+    console.log("bomber - connectionAngle " + degrees(bomber.angle - connectionAngle));
 //     tizzyAngleDif = min([abs(tizzyAngle-bomber.angle), abs(tizzyAngle+bomber.angle)]);
 	var tizzyAngle = bomber.angle - connectionAngle;
     return tizzyAngle;
