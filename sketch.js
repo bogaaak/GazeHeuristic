@@ -10,14 +10,17 @@ var cHeight, cWidth;
 var setTizzyInput;
 var startSec;
 var diffSec;
+var arrowHeadX, arrowHeadY, arrowAngleOne, arrowAngleTwo;
+var threeQuarterPI;
 
 function setup() {
-  cHeight = 900;
+  cHeight = 850;
   cWidth = 1200;
   canvas = createCanvas(cWidth, cHeight);
   console.log("Pos of canvas: ", canvas.position());
   headerHeight = canvas.position().y;
   textFont(font);
+  threeQuarterPI = HALF_PI + QUARTER_PI;
   var buttonIndent = 100
   // Create object
   var playButton = createButton("Play / Pause");
@@ -32,7 +35,7 @@ function setup() {
   fCRSlider = createSlider(1, 200, 1);
   fCRSlider.position(20, headerHeight + 50);
 
-  bSpeedSlider = createSlider(1, 200, 80);
+  bSpeedSlider = createSlider(1, 200, 90);
   bSpeedSlider.position(20, headerHeight + 80);
 
   var updateAngleButton = createButton("Update Tizzy Angle (IsoTriangle)");
@@ -87,7 +90,7 @@ function resetSketch() {
 	bSpeed = bSpeedSlider.value() / 100;
 	fSpeed = fSpeedSlider.value() / 100;
 	bomber = new Aircraft(50, 800, 18/10 * PI, bSpeed, false, color(0, 0, 0));
-  	fighter = new Aircraft(50, 120, 0, fSpeed, true, color(255, 255, 255), bomber);
+  fighter = new Aircraft(50, 120, 0, fSpeed, true, color(255, 255, 255), bomber);
 	// bomber = new Aircraft(50, 120, QUARTER_PI, bSpeed, false, color(0, 0, 0));
 //   	fighter = new Aircraft(50, 800, 0, fSpeed, true, color(255, 255, 255), bomber);
 
@@ -212,14 +215,24 @@ function Aircraft(x, y, angle, speed, isFighter, color, fightingBomber) {
     fill(this.color)
     ellipse(this.x, this.y, this.diameter, this.diameter);
     if (this.isFighter) {
-        message = "F";
+      message = "F";
     	bounds = font.textBounds(message, 0, 0, fontSize+2);
   		xT = this.x - bounds.w / 1.9;
   		yT = this.y + bounds.h / 2;
     	fill("black");
     	text(message, xT, yT);
     } else {
-    	message = "B";
+      stroke("black");
+      arrowHeadX = this.x + cos(this.angle)*40;
+      arrowHeadY = this.y + sin(this.angle)*40;
+      arrowAngleOne = this.angle + threeQuarterPI;
+      arrowAngleTwo = this.angle - threeQuarterPI;
+      line(this.x, this.y, arrowHeadX, arrowHeadY);
+      // stroke("red");
+      line(arrowHeadX, arrowHeadY, arrowHeadX + cos(arrowAngleOne)*10, arrowHeadY + sin(arrowAngleOne)*10);
+      line(arrowHeadX, arrowHeadY, arrowHeadX + cos(arrowAngleTwo)*10, arrowHeadY + sin(arrowAngleTwo)*10);
+      noStroke();
+      message = "B";
     	bounds = font.textBounds(message, 0, 0, fontSize+2);
   		xT = this.x - bounds.w / 1.9;
   		yT = this.y + bounds.h / 2;
