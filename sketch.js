@@ -212,16 +212,16 @@ function Aircraft(x, y, angle, speed, isFighter, color, fightingBomber) {
     fill(this.color)
     ellipse(this.x, this.y, this.diameter, this.diameter);
     if (this.isFighter) {
-        message = "F"
-    	bounds = font.textBounds(message, 0, 0, fontSize);
-  		xT = this.x - bounds.w / 2;
+        message = "F";
+    	bounds = font.textBounds(message, 0, 0, fontSize+2);
+  		xT = this.x - bounds.w / 1.9;
   		yT = this.y + bounds.h / 2;
     	fill("black");
     	text(message, xT, yT);
     } else {
-    	message = "B"
-    	bounds = font.textBounds(message, 0, 0, fontSize);
-  		xT = this.x - bounds.w / 2;
+    	message = "B";
+    	bounds = font.textBounds(message, 0, 0, fontSize+2);
+  		xT = this.x - bounds.w / 1.9;
   		yT = this.y + bounds.h / 2;
     	fill("white");
     	text(message, xT, yT);
