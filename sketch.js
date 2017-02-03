@@ -4,7 +4,7 @@ var bomberAngle;
 var doesOverlap = false;
 var playIt = false;
 function preload() {
-  font = loadFont("assets/HelveticaNeue-Medium.otf");
+  font = loadFont("assets/Gill Sans MT.ttf");
 }
 var cHeight, cWidth;
 var setTizzyInput;
@@ -14,36 +14,38 @@ var diffSec;
 function setup() {
   cHeight = 950;
   cWidth = 1200;
-  createCanvas(cWidth, cHeight);
+  canvas = createCanvas(cWidth, cHeight);
+  console.log("Pos of canvas: ", canvas.position());
+  headerHeight = canvas.position().y;
   textFont(font);
   var buttonIndent = 100
   // Create object
   var playButton = createButton("Play / Pause");
   playButton.mousePressed(togglePlaying);
-  playButton.position(cWidth - buttonIndent, 50);
+  playButton.position(cWidth - buttonIndent, headerHeight + 50);
   var resetButton = createButton("Reset");
   resetButton.mousePressed(resetSketch);
-  resetButton.position(cWidth - buttonIndent, 20);
+  resetButton.position(cWidth - buttonIndent, headerHeight + 20);
 
-  fSpeedSlider = createSlider(1, 200, 90);
-  fSpeedSlider.position(20, 20);
+  fSpeedSlider = createSlider(1, 200, 120);
+  fSpeedSlider.position(20, headerHeight + 20);
   fCRSlider = createSlider(1, 200, 1);
-  fCRSlider.position(20, 50);
+  fCRSlider.position(20, headerHeight + 50);
 
-  bSpeedSlider = createSlider(1, 200, 60);
-  bSpeedSlider.position(20, 80);
+  bSpeedSlider = createSlider(1, 200, 80);
+  bSpeedSlider.position(20, headerHeight + 80);
 
   var updateAngleButton = createButton("Update Tizzy Angle (IsoTriangle)");
   updateAngleButton.mousePressed(updateAngle);
-  updateAngleButton.position(cWidth/2, 20);
+  updateAngleButton.position(cWidth/2-30, headerHeight + 20);
 
-  setTizzyInput = createInput('');
-  setTizzyInput.position(cWidth/2, 50);
-  setTizzyInput.size(30, 20);
+  setTizzyInput = createInput('0');
+  setTizzyInput.position(cWidth/2-30, headerHeight + 50);
+  setTizzyInput.size(30, 23);
 
   var setTizzyButton = createButton("Update Tizzy Angle (Manually)");
   setTizzyButton.mousePressed(setTizzyAngle);
-  setTizzyButton.position(cWidth/2+ 30, 50);
+  setTizzyButton.position(cWidth/2, headerHeight + 50);
 
   resetSketch();
 }
@@ -56,7 +58,7 @@ function draw() {
   fill('black');
   text("Bomber speed", 165, 95);
   var currentTizzy = round(degrees(fighter.tizzyAngle));
-  text("Current Tizzy Angle: " + currentTizzy + "°", cWidth/2, 95);
+  text("Current Tizzy Angle: " + currentTizzy + "°", cWidth/2-30, 95);
   displayX(bomber, fighter);
   bomber.display();
   fighter.display();

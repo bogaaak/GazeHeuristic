@@ -5,11 +5,80 @@
   <!-- uncomment lines below to include extra p5 libraries -->
   <script language="javascript" src="libraries/p5.dom.js"></script>
   <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
-  <script language="javascript" type="text/javascript" src="sketch.js"></script>
+<title>Gaze</title>
   <!-- this line removes any default padding and style. you might only need one of these values set. -->
-  <style> body {padding: 0; margin: 0;} </style>
+  <style>
+  body {padding: 0; margin: 0;}
+  h1 {
+  	font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif;
+  	font-size: 24px;
+  	font-style: normal;
+  	font-variant: normal;
+  	font-weight: 500;
+  	line-height: 26.4px;
+  }
+  h3 {
+  	font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif;
+  	font-size: 14px;
+  	font-style: normal;
+  	font-variant: normal;
+  	font-weight: 500;
+  	line-height: 15.4px;
+  }
+  p, ul {
+  	font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif;
+  	font-size: 14px;
+  	font-style: normal;
+  	font-variant: normal;
+  	font-weight: 400;
+  	line-height: 20px;
+  }
+  blockquote {
+  	font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif;
+  	font-size: 21px;
+  	font-style: normal;
+  	font-variant: normal;
+  	font-weight: 400;
+  	line-height: 30px;
+  }
+  pre {
+  	font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif;
+  	font-size: 13px;
+  	font-style: normal;
+  	font-variant: normal;
+  	font-weight: 400;
+  	line-height: 18.5667px;
+  }
+  button {
+    font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif;
+  	font-size: 13px;
+  	font-style: normal;
+  	font-variant: normal;
+  	font-weight: 400;
+  	line-height: 18.5667px;
+  }
+  </style>
 </head>
 
 <body>
+  <h1>Gaze Heuristic Simulator</h1>
+<div id="maintext" style="width:600px;">
+<p>The simulation is based on the fighter vs. bomber example in Hamlin's (2017, in press) biography of the gaze heuristic.
+</p>
+<ul>
+<li>Use the space bar to play / pause.</li>
+<li>Reset to starting position using 'r'.</li>
+<li>Try to fool the gaze heuristic and use 'n' (left) and 'm' (right) to steer the bomber.</li>
+<li>The 'Tizzy angle' is determined once in the beginning based on the position of both airplanes and the bomber's initial direction.
+You can recalculate the 'Tizzy angle' at any time or set it manually. A 'Tizzy angle' of 0° corresponds to the 'AN method' as described in the paper and supposedly used by the German Luftwaffe in WW II.</li>
+<li>The fighter's cycling rate corresponds to the number of frames the fighter has to wait before it can readjust its direction to keep the 'Tizzy angle' constant.
+A higher value thus makes the fighter thus more lethargic.</li>
+</ul>
+
+<p>
+Made by  <a href="lichtenberg@mpib-berlin.mpg.de">Jan Malte Lichtenberg</a>. Very much work in progress. Bug reports and feature requests are very welcome.
+</p>
+</div>
+<script language="javascript" type="text/javascript" src="sketch.js"></script>
 </body>
 </html>
