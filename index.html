@@ -64,13 +64,18 @@
   <h1>Gaze Heuristic Simulator</h1>
 <div id="maintext" style="width:600px;">
 <p>The simulation is based on the fighter vs. bomber example in Hamlin's (2017, in press) biography of the gaze heuristic.
+  In this 'game', the fighter tries to catch the bomber using the gaze heuristic or other strategies (see below).
+</p>
+<p>
+  Playing around under varying conditions (speed, cycle rate) hopefully provides more intuition of when and why the gaze heuristic suceeds or fails. How to play:
 </p>
 <ul>
+
 <li>Use the space bar to play / pause.</li>
 <li>Reset to starting position using 'r'.</li>
 <li>Try to fool the gaze heuristic and use 'n' (left) and 'm' (right) to steer the bomber.</li>
-<li>The 'Tizzy angle' is determined once in the beginning based on the position of both airplanes and the bomber's initial direction.
-You can recalculate the 'Tizzy angle' at any time or set it manually. A 'Tizzy angle' of 0° corresponds to the 'AN method' as described in the paper and supposedly used by the German Luftwaffe in WW II.</li>
+<li>The 'Tizzy angle' is determined once in the beginning based on the initial position of both airplanes and the bomber's direction.
+You can recalculate the 'Tizzy angle' at any time or set it manually to any desired angle (in degrees). A 'Tizzy angle' of 0° corresponds to the 'AN method' as described in the paper and supposedly used by the German Luftwaffe in WW II.</li>
 <li>The fighter's cycling rate corresponds to the number of frames the fighter has to wait before it can readjust its direction to keep the 'Tizzy angle' constant.
 A higher value thus makes the fighter thus more lethargic. </li>
 </ul>
