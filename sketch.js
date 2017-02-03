@@ -61,10 +61,11 @@ function draw() {
   fill('black');
   text("Bomber speed", 165, 95);
   var currentTizzy = round(degrees(fighter.tizzyAngle));
-  text("Current Tizzy Angle: " + currentTizzy + "°", cWidth/2-30, 95);
-  displayX(bomber, fighter);
-  bomber.display();
-  fighter.display();
+  text("Current Tizzy Angle: ", cWidth/2-30, 95);
+  fill("red");
+  text(currentTizzy + "°", cWidth/2+ 90, 95);
+  fill("black");
+  // displayX(bomber, fighter);
   if (playIt) {
  	if (keyIsDown(78)) {
     	bomber.angle += -0.03;
@@ -82,8 +83,10 @@ function draw() {
   	fighter.move();
   	doesOverlap = checkOverlap(fighter, bomber);
   	if (doesOverlap) resetSketch();
+    displayX(bomber, fighter);
   }
-
+  bomber.display();
+  fighter.display();
 }
 
 function resetSketch() {
