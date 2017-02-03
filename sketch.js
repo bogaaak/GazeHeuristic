@@ -12,7 +12,7 @@ var startSec;
 var diffSec;
 
 function setup() {
-  cHeight = 950;
+  cHeight = 900;
   cWidth = 1200;
   canvas = createCanvas(cWidth, cHeight);
   console.log("Pos of canvas: ", canvas.position());
