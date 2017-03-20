@@ -3,8 +3,12 @@ var bomber, fighter, bSpeed, fSpeed, bSpeedSlider, fSpeedSlider;
 var bomberAngle;
 var doesOverlap = false;
 var playIt = false;
+var bomberImage, bomberImageH, bomberImageW;fighterImage
+var fighterImage, fighterImageH, fighterImageW;
 function preload() {
   font = loadFont("assets/Gill Sans MT.ttf");
+  bomberImage = loadImage("assets/BomberBlack.png");
+  fighterImage = loadImage("assets/BomberWhite.png");
 }
 var cHeight, cWidth;
 var setTizzyInput;
@@ -18,6 +22,10 @@ function setup() {
   cWidth = 1200;
   canvas = createCanvas(cWidth, cHeight);
   console.log("Pos of canvas: ", canvas.position());
+  bomberImageH = bomberImage.height;
+  bomberImageW = bomberImage.width;
+  fighterImageH = fighterImage.height;
+  fighterImageW = fighterImage.width;
   headerHeight = canvas.position().y;
   textFont(font);
   threeQuarterPI = HALF_PI + QUARTER_PI;
@@ -215,34 +223,40 @@ function Aircraft(x, y, angle, speed, isFighter, color, fightingBomber) {
   };
 
   this.display = function() {
-    fill(this.color)
-    ellipse(this.x, this.y, this.diameter, this.diameter);
+    push();
+    translate(this.x, this.y);
+    rotate(this.angle+HALF_PI);
     if (this.isFighter) {
-      message = "F";
-    	bounds = font.textBounds(message, 0, 0, fontSize+2);
-  		xT = this.x - bounds.w / 1.9;
-  		yT = this.y + bounds.h / 2;
-    	fill("black");
-    	text(message, xT, yT);
+      image(fighterImage, -fighterImageW/2, -fighterImageH/2);
+      // fill(this.color);
+      // ellipse(this.x, this.y, this.diameter, this.diameter);
+      // message = "F";
+    	// bounds = font.textBounds(message, 0, 0, fontSize+2);
+  		// xT = this.x - bounds.w / 1.9;
+  		// yT = this.y + bounds.h / 2;
+    	// fill("black");
+    	// text(message, xT, yT);
     } else {
-      stroke("black");
-      arrowHeadX = this.x + cos(this.angle)*40;
-      arrowHeadY = this.y + sin(this.angle)*40;
-      arrowAngleOne = this.angle + threeQuarterPI;
-      arrowAngleTwo = this.angle - threeQuarterPI;
-      line(this.x, this.y, arrowHeadX, arrowHeadY);
-      // stroke("red");
-      line(arrowHeadX, arrowHeadY, arrowHeadX + cos(arrowAngleOne)*10, arrowHeadY + sin(arrowAngleOne)*10);
-      line(arrowHeadX, arrowHeadY, arrowHeadX + cos(arrowAngleTwo)*10, arrowHeadY + sin(arrowAngleTwo)*10);
-      noStroke();
-      message = "B";
-    	bounds = font.textBounds(message, 0, 0, fontSize+2);
-  		xT = this.x - bounds.w / 1.9;
-  		yT = this.y + bounds.h / 2;
-    	fill("white");
-    	text(message, xT, yT);
-    }
+      image(bomberImage, -bomberImageW/2, -bomberImageH/2);
+      // stroke("black");
+      // arrowHeadX = this.x + cos(this.angle)*40;
+      // arrowHeadY = this.y + sin(this.angle)*40;
+      // arrowAngleOne = this.angle + threeQuarterPI;
+      // arrowAngleTwo = this.angle - threeQuarterPI;
+      // line(this.x, this.y, arrowHeadX, arrowHeadY);
+      // // stroke("red");
+      // line(arrowHeadX, arrowHeadY, arrowHeadX + cos(arrowAngleOne)*10, arrowHeadY + sin(arrowAngleOne)*10);
+      // line(arrowHeadX, arrowHeadY, arrowHeadX + cos(arrowAngleTwo)*10, arrowHeadY + sin(arrowAngleTwo)*10);
+      // noStroke();
+      // message = "B";
+    	// bounds = font.textBounds(message, 0, 0, fontSize+2);
+  		// xT = this.x - bounds.w / 1.9;
+  		// yT = this.y + bounds.h / 2;
+    	// fill("white");
+    	// text(message, xT, yT);
 
+    }
+    pop();
   };
 
   this.adjustDirection = function(bomber) {
